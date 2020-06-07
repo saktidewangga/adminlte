@@ -7,7 +7,7 @@ namespace CI4Xpander\AdminLTE\View\Component;
  */
 class Card extends \CI4Xpander\View\Component
 {
-    protected string $_name = 'Card';
+    protected $_name = 'Card';
 
     use \CI4Xpander\View\ComponentFactoryTrait;
 }

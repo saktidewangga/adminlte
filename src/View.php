@@ -5,7 +5,7 @@
  */
 class View extends \CI4Xpander\View
 {
-    protected string $_name = 'AdminLTE';
+    protected $_name = 'AdminLTE';
 
     use \CI4Xpander\ViewFactoryTrait;
 }
