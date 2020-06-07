@@ -1,0 +1,38 @@
+{
+    "name": "codeigniter4-xpander/adminlte",
+    "description": "AdminLTE using codeigniter 4 xpander",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bagus A Priambada",
+            "email": "iam.adty@gmail.com"
+        }
+    ],
+    "require": {
+        "codeigniter4-xpander/core": "dev-develop",
+        "slowprog/composer-copy-file": "~0.3",
+        "almasaeed2010/adminlte": "~3.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "CI4Xpander\\AdminLTE\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "SlowProg\\CopyFile\\ScriptHandler::copy"
+        ],
+        "post-update-cmd": [
+            "SlowProg\\CopyFile\\ScriptHandler::copy"
+        ]
+    },
+    "extra": {
+        "copy-file": {
+            "vendor/almasaeed2010/adminlte/dist/": "public/assets/vendor/adminlte/",
+            "vendor/almasaeed2010/adminlte/plugins/": "public/assets/vendor/adminlte/plugins/"
+        }
+    }
+}
