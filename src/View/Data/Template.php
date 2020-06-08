@@ -1,9 +1,9 @@
-<?php namespace CI4Xpander\AdminLTE\View\Data;
+<?php namespace CI4Xpander_AdminLTE\View\Data;
 
 class Template extends \CI4Xpander\View\Data
 {
     /**
-     * @var \CI4Xpander\AdminLTE\View\Data\Template\Menu
+     * @var \CI4Xpander_AdminLTE\View\Data\Template\Menu
      */
     public $menu;
 

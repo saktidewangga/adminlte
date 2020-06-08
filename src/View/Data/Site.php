@@ -1,6 +1,6 @@
 <?php
 
-namespace CI4Xpander\AdminLTE\View\Data;
+namespace CI4Xpander_AdminLTE\View\Data;
 
 class Site extends \CI4Xpander\View\Data
 {

@@ -1,4 +1,4 @@
-<?php namespace CI4Xpander\AdminLTE\View\Data;
+<?php namespace CI4Xpander_AdminLTE\View\Data;
 
 class User extends \CI4Xpander\View\Data
 {

@@ -1,7 +1,7 @@
-<?php namespace CI4Xpander\AdminLTE;
+<?php namespace CI4Xpander_AdminLTE;
 
 /**
- * @property \CI4Xpander\AdminLTE\View\Data $data
+ * @property \CI4Xpander_AdminLTE\View\Data $data
  */
 class View extends \CI4Xpander\View
 {

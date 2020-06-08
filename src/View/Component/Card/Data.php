@@ -1,6 +1,6 @@
 <?php
 
-namespace CI4Xpander\AdminLTE\View\Component\Card;
+namespace CI4Xpander_AdminLTE\View\Component\Card;
 
 class Data extends \CI4Xpander\View\Data
 {

@@ -18,7 +18,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "CI4Xpander\\AdminLTE\\": "src/"
+            "CI4Xpander_AdminLTE\\": "src/"
         }
     },
     "scripts": {

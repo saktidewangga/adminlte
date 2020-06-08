@@ -1,6 +1,6 @@
 <?php
 
-namespace CI4Xpander\AdminLTE\View\Data\Template\Menu;
+namespace CI4Xpander_AdminLTE\View\Data\Template\Menu;
 
 class Item extends \CI4Xpander\View\Data
 {
