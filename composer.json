@@ -11,8 +11,7 @@
     ],
     "require": {
         "codeigniter4-xpander/core": "dev-develop",
-        "slowprog/composer-copy-file": "~0.3",
-        "almasaeed2010/adminlte": "^2.4"
+        "npm-asset/admin-lte": "^2.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -21,19 +20,16 @@
             "CI4Xpander_AdminLTE\\": "src/"
         }
     },
-    "scripts": {
-        "post-install-cmd": [
-            "SlowProg\\CopyFile\\ScriptHandler::copy"
-        ],
-        "post-update-cmd": [
-            "SlowProg\\CopyFile\\ScriptHandler::copy"
-        ]
-    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "extra": {
-        "copy-file": {
-            "vendor/almasaeed2010/adminlte/dist/": "public/assets/vendor/adminlte/",
-            "vendor/almasaeed2010/adminlte/bower_components/": "public/assets/vendor/adminlte/bower_components/",
-            "vendor/almasaeed2010/adminlte/plugins/": "public/assets/vendor/adminlte/plugins/"
+        "installer-types": ["bower-asset", "npm-asset"],
+        "installer-paths": {
+            "public/assets/{$vendor}/{$name}/": ["type:bower-asset", "type:npm-asset"]
         }
     }
 }
