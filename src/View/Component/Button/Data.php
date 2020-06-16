@@ -8,6 +8,8 @@ class Data extends \CI4Xpander_Dashboard\View\Data
     public $isEnabled = true;
     public $isFlat = false;
     public $isBlock = false;
+    public $isLink = false;
+    public $url = '';
 
     use \CI4Xpander\View\DataFactoryTrait;
 }

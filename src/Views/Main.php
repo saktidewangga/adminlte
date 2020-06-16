@@ -9,13 +9,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/font-awesome/css/font-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/Ionicons/css/ionicons.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/dist/css/AdminLTE.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/dist/css/skins/_all-skins.min.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/morris.js/morris.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/jvectormap/jquery-jvectormap.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css'); ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -78,21 +74,21 @@
         <aside class="main-sidebar">
             <section class="sidebar">
                 <ul class="sidebar-menu" data-widget="tree">
-                <?php foreach ($data->template->menu->items as $item): ?>
-                <?= \CI4Xpander_AdminLTE\View\Component\Menu\Item::create($item)->render(); ?>
-                <?php endforeach; ?>
+                    <?php foreach ($data->template->menu->items as $item) : ?>
+                        <?= \CI4Xpander_AdminLTE\View\Component\Menu\Item::create($item)->render(); ?>
+                    <?php endforeach; ?>
                 </ul>
             </section>
         </aside>
 
         <div class="content-wrapper">
             <?php if (!empty($data->page->title) || !empty($data->page->description)) : ?>
-            <section class="content-header">
-                <h1>
-                    <?= $data->page->title ?? '' ?>
-                    <?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : '' ?>
-                </h1>
-            </section>
+                <section class="content-header">
+                    <h1>
+                        <?= $data->page->title ?? '' ?>
+                        <?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : '' ?>
+                    </h1>
+                </section>
             <?php endif; ?>
 
             <section class="content">

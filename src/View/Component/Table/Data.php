@@ -11,5 +11,7 @@ class Data extends \CI4Xpander\View\Data
         'delete'
     ];
 
+    public $isDataTable = false;
+
     use \CI4Xpander\View\DataFactoryTrait;
 }
