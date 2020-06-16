@@ -9,5 +9,7 @@ class Data extends \CI4Xpander\View\Data
 
     public $body = '';
 
+    public $foot = '';
+
     use \CI4Xpander\View\DataFactoryTrait;
 }
