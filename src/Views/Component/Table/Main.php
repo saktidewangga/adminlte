@@ -1,12 +1,14 @@
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-bordered table-striped table-hover<?= $data->isDataTable ? ' ci4xpander-adminlte-datatable' : '' ?>">
 <?php if (count($data->columns) > 0) : ?>
+<thead>
     <tr>
     <?php foreach ($data->columns as $name => $title) : ?>
         <th><?= $title; ?></th>
     <?php endforeach; ?>
     </tr>
+</thead>
 <?php endif; ?>
-
+<tbody>
 <?php foreach ($data->rows as $row) : ?>
     <tr>
     <?php foreach ($data->columns as $name => $title) : ?>
@@ -24,4 +26,14 @@
     <?php endforeach; ?>
     </tr>
 <?php endforeach; ?>
+</tbody>
+<?php if (count($data->columns) > 0) : ?>
+<tfoot>
+    <tr>
+    <?php foreach ($data->columns as $name => $title) : ?>
+        <th><?= $title; ?></th>
+    <?php endforeach; ?>
+    </tr>
+</tfoot>
+<?php endif; ?>
 </table>
