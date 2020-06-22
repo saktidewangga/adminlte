@@ -1,0 +1,1 @@
+<input type="<?= $data->type ?>" name="<?= $data->name ?>" class="<?= $data->class ?>" id="<?= $data->id ?>" placeholder="<?= $data->placeholder ?>">

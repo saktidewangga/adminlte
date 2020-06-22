@@ -1,0 +1,1 @@
+<label for="<?= $data->for ?>"><?= $data->text ?></label>

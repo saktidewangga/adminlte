@@ -1,0 +1,1 @@
+<textarea class="<?= $data->class ?>" name="<?= $data->name ?>" id="<?= $data->id ?>" <?= $data->cols ? "cols=\"{$data->cols}\"" : "" ?> <?= $data->rows ? "rows=\"{$data->rows}\"" : "" ?>><?= $data->value ?></textarea>
