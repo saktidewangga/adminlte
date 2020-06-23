@@ -1,6 +1,7 @@
 <?php namespace CI4Xpander_AdminLTE\View\Component;
 
 use CI4Xpander_AdminLTE\View\Component\Form\Type;
+use DateTime;
 use Stringy\StaticStringy;
 
 /**
@@ -163,9 +164,191 @@ class Form extends \CI4Xpander\View\Component
                         $columnClass = [];
                         if ($column > 1) {
                             $columnDiv = 12 / $column;
-                            $columnClass[] = "cl-md-{$columnDiv}";
+                            $columnClass[] = "col-md-{$columnDiv}";
+
+                            if ($columnCount == 1) {
+                                $view .= "<div class=\"row\">";
+                            }
+                        }
+
+                        $view .= '<div class="checkbox' . implode(' ', $columnClass) . '"><label>' . form_checkbox($name . '[]', $code, false, array_merge([
+                            'id' => $ID . ucfirst($code)
+                        ], $disabled)) . $name . '</label></div>';
+
+                        if ($column > 1) {
+                            if ($columnCount == $column) {
+                                $view .= '</div>';
+                                $columnCount = 0;
+                            }
+
+                            $columnCount++;
                         }
                     }
+
+                    if ($columnCount < $column) {
+                        for ($i = $columnCount; $i <= $column; $i++) {
+                            $view .= '<div class="col-md-' . (12 / $column) . '"></div>';
+                        }
+                        $view .= '</div>';
+                    }
+                } elseif ($input['type'] == Type::CHECKBOX_SINGLE) {
+                    $submittedCheck = false;
+                    $singleCheckboxValue = isset($input['value']) ? $input['value'] : 'true';
+                    if (isset($submittedValue)) {
+                        if (!is_null($submittedValue)) {
+                            if ($singleCheckboxValue == $submittedValue) {
+                                $submittedCheck = true;
+                            }
+                        }
+                    }
+
+                    $view .= '<div class="checkbox"><label>' . form_checkbox($name, $singleCheckboxValue, isset($input['checked']) ? $input['checked'] : $submittedCheck, array_merge([
+                        'id' => $ID
+                    ], $disabled)) . '</label></div>';
+                } elseif ($input['type'] == 'hidden') {
+                    $view .= form_hidden($name, $value);
+                } elseif ($input['type'] == Type::RADIO) {
+                    if (isset($input['options'])) {
+                        foreach ($input['options'] as $keyRadio => $valRadio) {
+                            $selected = false;
+                            if (isset($input['checked'])) {
+                                $selected = $input['checked'] == $keyRadio;
+                            } else {
+                                if (isset($submittedValue)) {
+                                    $selected = $submittedValue == $keyRadio;
+                                } else {
+                                    if (isset($input['default'])) {
+                                        $selected = $input['default'] == $keyRadio;
+                                    }
+                                }
+                            }
+
+                            $view .= '<div class="radio"><label>';
+                            $view .= form_radio($name, $keyRadio, $selected, array_merge(
+                                $disabled,
+                                [
+                                    'id' => $ID . ucfirst(str_replace('-', '', $keyRadio))
+                                ]
+                            )) . $valRadio;
+                            $view .= '</label></div>';
+                        }
+                    }
+                } elseif (in_array($input['type'], [Type::DATE, Type::DATE_RANGE])) {
+                    $view .= '<div class="input-group date"><div class="input-group-addon"><i class="fa fa-calendar"></i></div>';
+
+                    if (is_object($value)) {
+                        if ($value instanceof DateTime) {
+                            $value = $value->format('Y-m-d');
+                        }
+                    }
+
+                    $view .= form_input($name, $value, array_merge($disabled, [
+                        'class' => 'form-control',
+                        'id' => $ID,
+                        'autocomplete' => 'off'
+                    ]), 'text');
+                    $view .= '</div>';
+
+                    $this->relayed['data']['template']['script'][$input['type'] . 'Picker'][] = $ID;
+                } elseif (in_array($input['type'], [
+                    Type::TEXT_AREA, Type::WYSIWYG
+                ])) {
+                    $view .= form_textarea($name, $value, array_merge(
+                        [
+                            'class' => 'form-control',
+                            'id' => $ID,
+                        ],
+                        $disabled
+                    ));
+
+                    if ($input['type'] == Type::WYSIWYG) {
+                        $this->relayed['data']['template']['script'][Type::WYSIWYG][] = $ID;
+                    }
+                } elseif ($input['type'] == Type::SEPARATOR) {
+                    $view .= form_label('<u>' . $label . '</u>', '', [
+                        'class' => 'control-label'
+                    ]);
+                } elseif ($input['type'] == Type::BUTTON_SUBMIT) {
+                    $view .= form_submit($name, $label, array_merge(
+                        [
+                            'class' => 'btn btn-primary'
+                        ],
+                        $disabled
+                    ));
+                } elseif ($input['type'] == Type::BUTTON_GROUP) {
+                    foreach ($input['buttons'] as $buttonName => $button) {
+                        $buttonLabel = '';    
+                        if (isset($button['label'])) {
+                            $buttonLabel = $button['label'];
+                        } else {
+                            $buttonLabel = StaticStringy::toTitleCase(str_replace('_', ' ', $buttonName));
+                        }
+
+                        if ($button['type'] == Type::BUTTON_SUBMIT) {
+                            $view .= form_submit($buttonName, $buttonLabel, array_merge(
+                                [
+                                    'class' => 'btn btn-primary'
+                                ],
+                                $disabled
+                            ));
+                        } elseif ($button['type'] == Type::BUTTON_RESET) {
+                            $view .= form_reset($buttonName, $buttonLabel, array_merge(
+                                [
+                                    'class' => 'btn btn-danger'
+                                ],
+                                $disabled
+                            ));
+                        } else {
+                            $view .= form_button($buttonName, $buttonLabel, array_merge(
+                                [
+                                    'class' => 'btn btn-primary'
+                                ],
+                                $disabled
+                            ));
+                        }
+                    }
+                } elseif ($input['type'] == Type::PREDEFINED) {
+                    $view = $input['value'];
+                } elseif ($input['type'] == Type::SLIDER || $input['type'] == Type::SLIDER_RANGE) {
+                    $min = $input['min'] ?? 0;
+                    $max = $input['max'] ?? 100;
+                    $step = $input['step'] ?? 1;
+
+                    $matched = null;
+                    if ($input['type'] == Type::SLIDER_RANGE) {
+                        preg_match('/^\[\d+,\d+\]$/', $value, $matched);
+                        
+                        if (count($matched) > 0) {
+                            $value = $matched[0];
+                        } else {
+                            preg_match('/^\d+,\d+$/', $value, $matched);
+                            if (count($matched) > 0) {
+                                $value = '[' . $matched[0] . ']';
+                            } else {
+                                $value = '[' . strval($min) . ',' . strval($max) . ']';
+                            }
+                        }
+                    } else {
+                        if (empty($value)) {
+                            $value = '0';
+                        }
+                    }
+
+                    $view .= form_input($name, '', array_merge($disabled, [
+                        'class' => 'slider form-control',
+                        'id' => $ID,
+                        'autocomplete' => 'off',
+                        'data-slider-min' => strval($min),
+                        'data-slider-max' => strval($max),
+                        'data-slider-step' => strval($step),
+                        'data-slider-value' => strval($value),
+                        'data-slider-orientation' => 'horizontal',
+                        'data-slider-id' => $ID,
+                    ]), 'text');
+                }
+    
+                if (isset($input['hint'])) {
+                    $view .= '<span class="help-block"><i>' . $input['hint'] . '</i></span>';
                 }
 
                 $view .= "</div>";
