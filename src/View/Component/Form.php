@@ -248,8 +248,6 @@ class Form extends \CI4Xpander\View\Component
                         'autocomplete' => 'off'
                     ]), 'text');
                     $view .= '</div>';
-
-                    $this->relayed['data']['template']['script'][$input['type'] . 'Picker'][] = $ID;
                 } elseif (in_array($input['type'], [
                     Type::TEXT_AREA, Type::WYSIWYG
                 ])) {
@@ -260,10 +258,6 @@ class Form extends \CI4Xpander\View\Component
                         ],
                         $disabled
                     ));
-
-                    if ($input['type'] == Type::WYSIWYG) {
-                        $this->relayed['data']['template']['script'][Type::WYSIWYG][] = $ID;
-                    }
                 } elseif ($input['type'] == Type::SEPARATOR) {
                     $view .= form_label('<u>' . $label . '</u>', '', [
                         'class' => 'control-label'
@@ -277,7 +271,7 @@ class Form extends \CI4Xpander\View\Component
                     ));
                 } elseif ($input['type'] == Type::BUTTON_GROUP) {
                     foreach ($input['buttons'] as $buttonName => $button) {
-                        $buttonLabel = '';    
+                        $buttonLabel = '';
                         if (isset($button['label'])) {
                             $buttonLabel = $button['label'];
                         } else {
@@ -317,7 +311,7 @@ class Form extends \CI4Xpander\View\Component
                     $matched = null;
                     if ($input['type'] == Type::SLIDER_RANGE) {
                         preg_match('/^\[\d+,\d+\]$/', $value, $matched);
-                        
+
                         if (count($matched) > 0) {
                             $value = $matched[0];
                         } else {
@@ -346,7 +340,7 @@ class Form extends \CI4Xpander\View\Component
                         'data-slider-id' => $ID,
                     ]), 'text');
                 }
-    
+
                 if (isset($input['hint'])) {
                     $view .= '<span class="help-block"><i>' . $input['hint'] . '</i></span>';
                 }
