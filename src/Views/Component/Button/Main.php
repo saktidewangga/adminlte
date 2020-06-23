@@ -1,8 +1,8 @@
 <?php
 $class[] = 'btn';
 
-if (!empty($data->type)) {
-    $class[] = 'btn-' . $data->type;
+if (!empty($data->style)) {
+    $class[] = 'btn-' . $data->style;
 }
 
 if (!empty($data->size)) {
@@ -22,6 +22,6 @@ if (!$data->isEnabled) {
 }
 ?>
 
-<button type="button" class="<?= implode(' ', $class); ?>">
+<button type="<?= $data->type ?>" class="<?= implode(' ', $class); ?>">
     <?= $data->text; ?>
 </button>

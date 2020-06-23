@@ -1,3 +1,13 @@
+<?= form_open($data->action, [
+    'id' => $data->id,
+    'class' => $data->class,
+    'role' => 'form'
+], $data->hidden) ?>
+
+
+
+<?= form_close() ?>
+
 <form method="<?= $data->method ?>" action="<?= $data->action ?>" id="<?= $data->id ?>" class="<?= $data->class ?>">
 <?php foreach ($data->input as $name => $input) : ?>
 
@@ -24,6 +34,15 @@
 <?= \CI4Xpander_AdminLTE\View\Component\TextArea::create(\CI4Xpander_AdminLTE\View\Component\TextArea\Data::create([
     'name' => $name,
 ])) ?>
+
+<?php elseif ($input['type'] == 'buttonGroup') : ?>
+
+<?php foreach ($input['buttons'] as $button) : ?>
+<?= \CI4Xpander_AdminLTE\View\Component\Button::create(\CI4Xpander_AdminLTE\View\Component\Button\Data::create([
+    'type' => $button['type'],
+    'text' => $button['text']
+])) ?>
+<?php endforeach; ?>
 
 <?php endif; ?>
 

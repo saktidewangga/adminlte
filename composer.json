@@ -12,7 +12,8 @@
     "require": {
         "codeigniter4-xpander/core": "dev-develop",
         "oomphinc/composer-installers-extender": "^1.1",
-        "npm-asset/admin-lte": "^2.4"
+        "npm-asset/admin-lte": "^2.4",
+        "danielstjules/stringy": "^3.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

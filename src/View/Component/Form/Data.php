@@ -5,8 +5,7 @@ class Data extends \CI4Xpander\View\Data
     public $method = 'POST';
     public $action = '';
     public $input = [];
-    public $id = '';
-    public $class = '';
+    public $hidden = [];
 
     use \CI4Xpander\View\DataFactoryTrait;
 }

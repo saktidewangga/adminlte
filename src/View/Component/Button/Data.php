@@ -2,7 +2,8 @@
 
 class Data extends \CI4Xpander_Dashboard\View\Data
 {
-    public $type = 'default';
+    public $type = 'button';
+    public $style = 'default';
     public $text = '';
     public $size = '';
     public $isEnabled = true;
