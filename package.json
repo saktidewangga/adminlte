@@ -1,0 +1,14 @@
+{
+  "name": "codeigniter4-xpander-adminlte",
+  "version": "0.0.0",
+  "description": "CodeIgniter 4 AdminLTE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@composer-asset/codeigniter4-xpander--asset": "file:./vendor/foxy/composer-asset/codeigniter4-xpander/asset",
+    "admin-lte": "^2.4.18"
+  }
+}
