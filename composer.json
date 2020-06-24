@@ -10,7 +10,9 @@
         }
     ],
     "require": {
-        "codeigniter4-xpander/asset": "dev-develop",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "npm-asset/admin-lte": "^2.4",
+        "codeigniter4-xpander/core": "dev-develop",
         "danielstjules/stringy": "^3.1"
     },
     "minimum-stability": "dev",
@@ -22,5 +24,14 @@
     },
     "repositories": [
         {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
+    ],
+    "extra": {
+        "installer-types": ["npm-asset"],
+        "installer-paths": {
+            "public/assets/npm/{$name}/": ["type:npm-asset"]
+        }
+    }
 }
