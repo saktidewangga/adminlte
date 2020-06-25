@@ -271,29 +271,29 @@ class Form extends \CI4Xpander\View\Component
                     ));
                 } elseif ($input['type'] == Type::BUTTON_GROUP) {
                     foreach ($input['buttons'] as $buttonName => $button) {
-                        $buttonLabel = '';
-                        if (isset($button['label'])) {
-                            $buttonLabel = $button['label'];
+                        $buttonText = '';
+                        if (isset($button['text'])) {
+                            $buttonText = $button['text'];
                         } else {
-                            $buttonLabel = StaticStringy::toTitleCase(str_replace('_', ' ', $buttonName));
+                            $buttonText = StaticStringy::toTitleCase(str_replace('_', ' ', $buttonName));
                         }
 
                         if ($button['type'] == Type::BUTTON_SUBMIT) {
-                            $view .= form_submit($buttonName, $buttonLabel, array_merge(
+                            $view .= form_submit($buttonName, $buttonText, array_merge(
                                 [
                                     'class' => 'btn btn-primary'
                                 ],
                                 $disabled
                             ));
                         } elseif ($button['type'] == Type::BUTTON_RESET) {
-                            $view .= form_reset($buttonName, $buttonLabel, array_merge(
+                            $view .= form_reset($buttonName, $buttonText, array_merge(
                                 [
-                                    'class' => 'btn btn-danger'
+                                    'class' => 'btn btn-warning'
                                 ],
                                 $disabled
                             ));
                         } else {
-                            $view .= form_button($buttonName, $buttonLabel, array_merge(
+                            $view .= form_button($buttonName, $buttonText, array_merge(
                                 [
                                     'class' => 'btn btn-primary'
                                 ],
