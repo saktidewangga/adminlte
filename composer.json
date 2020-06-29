@@ -12,8 +12,7 @@
     "require": {
         "oomphinc/composer-installers-extender": "^1.1",
         "npm-asset/admin-lte": "^2.4",
-        "codeigniter4-xpander/core": "dev-develop",
-        "danielstjules/stringy": "^3.1"
+        "codeigniter4-xpander/asset": "dev-develop"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -32,6 +31,11 @@
         "installer-types": ["npm-asset"],
         "installer-paths": {
             "public/assets/npm/{$name}/": ["type:npm-asset"]
+        },
+        "ci4xpander": {
+            "asset": {
+                "dir": "src/assets"
+            }
         }
     }
 }
