@@ -7,7 +7,7 @@
     <title><?= $data->site->title; ?></title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/font-awesome/css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/font-awesome/css/font-awesome.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/Ionicons/css/ionicons.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/css/select2.min.css'); ?>">
@@ -63,7 +63,7 @@
                                         <a href="<?= base_url('dashboard/my-profile'); ?>" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<?= base_url('dashboard/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="<?= base_url('dashboard/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -86,14 +86,14 @@
             <?php if (!empty($data->page->title) || !empty($data->page->description)) : ?>
                 <section class="content-header">
                     <h1>
-                        <?= $data->page->title ?? '' ?>
-                        <?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : '' ?>
+                        <?= $data->page->title ?? ''; ?>
+                        <?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : ''; ?>
                     </h1>
                 </section>
             <?php endif; ?>
 
             <section class="content">
-                <?= $data->template->content ?? '' ?>
+                <?= $data->template->content ?? ''; ?>
             </section>
         </div>
         <footer class="main-footer">
@@ -107,9 +107,6 @@
 
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery/dist/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-ui/jquery-ui.min.js'); ?>"></script>
-    <script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
@@ -117,7 +114,20 @@
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/dist/js/adminlte.min.js'); ?>"></script>
-    <script src="<?= base_url('assets/vendor/codeigniter4-xpander/adminlte/js/autocomplete-dropdown.js'); ?>"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $.widget.bridge('uibutton', $.ui.button);
+
+            $(".sidebar-menu").tree();
+
+            $(".slider").slider({
+                tooltip: 'always'
+            });
+
+            <?= \Config\Services::viewScript()->render(); ?>
+        });
+    </script>
 </body>
 
 </html>

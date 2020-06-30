@@ -137,11 +137,10 @@ class Form extends \CI4Xpander\View\Component
                     $attributes = [];
                     $class = ['form-control'];
                     if ($input['type'] == Type::DROPDOWN_AUTOCOMPLETE) {
-                        $class[] = 'ci4xpander-adminlte-autocomplete-dropdown';
-
-                        if (isset($input['ajax'])) {
-                            $attributes['data-ajax-url'] = $input['ajax']['url'];
-                        }
+                        \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\AutocompleteDropdown', [
+                            'id' => $ID,
+                            'options' => $options
+                        ]));
                     }
 
                     $view .= form_dropdown($name, $options, $value, array_merge(
