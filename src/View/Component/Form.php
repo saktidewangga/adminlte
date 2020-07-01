@@ -247,9 +247,17 @@ class Form extends \CI4Xpander\View\Component
                         'autocomplete' => 'off'
                     ]), 'text');
                     $view .= '</div>';
+
+                    \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\\' . ($input['type'] == Type::DATE ? 'DatePicker' : 'DateRangePicker'), [
+                        'id' => $ID,
+                    ]));
                 } elseif (in_array($input['type'], [
                     Type::TEXT_AREA, Type::WYSIWYG
                 ])) {
+                    \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\WYSIWYG', [
+                        'id' => $ID,
+                    ]));
+
                     $view .= form_textarea($name, $value, array_merge(
                         [
                             'class' => 'form-control',

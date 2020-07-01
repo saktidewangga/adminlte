@@ -1,4 +1,4 @@
-<table class="table table-bordered table-striped table-hover<?= $data->isDataTable ? ' ci4xpander-adminlte-datatable' : '' ?>">
+<table id="<?= $data->id; ?>" class="table table-bordered table-striped table-hover">
 <?php if (count($data->columns) > 0) : ?>
 <thead>
     <tr>

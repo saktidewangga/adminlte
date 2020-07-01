@@ -2,6 +2,7 @@
 
 class Data extends \CI4Xpander\View\Data
 {
+    public $id = '';
     public $name = '';
     public $columns = [];
     public $rows = [];
