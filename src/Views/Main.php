@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/Ionicons/css/ionicons.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/css/select2.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/dist/css/AdminLTE.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/dist/css/skins/_all-skins.min.css'); ?>">
 
@@ -113,6 +114,7 @@
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/dist/js/adminlte.min.js'); ?>"></script>
     
     <script type="text/javascript">

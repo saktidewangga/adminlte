@@ -13,6 +13,7 @@ class Type
     const CHECKBOX = 'checkbox';
     const CHECKBOX_SINGLE = 'singleCheckbox';
     const RADIO = 'radio';
+    const TIME = 'time';
     const DATE = 'date';
     const DATE_RANGE = 'dateRange';
     const WYSIWYG = 'wysiwyg';

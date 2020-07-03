@@ -66,7 +66,7 @@ class Form extends \CI4Xpander\View\Component
                 }
 
                 if (in_array($input['type'], [
-                    Type::TEXT, Type::EMAIL, Type::PASSWORD, Type::DROPDOWN_AUTOCOMPLETE, Type::CHECKBOX, Type::CHECKBOX_SINGLE, Type::RADIO, Type::DATE, Type::DATE_RANGE, Type::TEXT_AREA, Type::WYSIWYG, Type::SLIDER, Type::SLIDER_RANGE
+                    Type::TEXT, Type::EMAIL, Type::PASSWORD, Type::DROPDOWN_AUTOCOMPLETE, Type::CHECKBOX, Type::CHECKBOX_SINGLE, Type::RADIO, Type::DATE, Type::DATE_RANGE, Type::TEXT_AREA, Type::WYSIWYG, Type::SLIDER, Type::SLIDER_RANGE, Type::TIME
                 ])) {
                     $view .= form_label($label, $ID, [
                         'class' => 'control-label',
@@ -251,12 +251,31 @@ class Form extends \CI4Xpander\View\Component
                     \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\\' . ($input['type'] == Type::DATE ? 'DatePicker' : 'DateRangePicker'), [
                         'id' => $ID,
                     ]));
+                } elseif ($input['type'] == Type::TIME) {
+                    \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\TimePicker', [
+                        'id' => $ID
+                    ]));
+
+                    $view .= '<div class="input-group">';
+
+                    $view .= form_input($name, $value, array_merge(
+                        $disabled,
+                        [
+                            'class' => 'form-control',
+                            'id' => $ID,
+                            'autocomplete' => 'off'
+                        ]
+                    ), 'text');
+
+                    $view .= '<div class="input-group-addon"><i class="fa fa-clock-o"></i></div></div>';
                 } elseif (in_array($input['type'], [
                     Type::TEXT_AREA, Type::WYSIWYG
                 ])) {
-                    \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\WYSIWYG', [
-                        'id' => $ID,
-                    ]));
+                    if ($input['type'] == Type::WYSIWYG) {
+                        \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\WYSIWYG', [
+                            'id' => $ID,
+                        ]));
+                    }
 
                     $view .= form_textarea($name, $value, array_merge(
                         [
