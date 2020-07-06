@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/font-awesome/css/font-awesome.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/Ionicons/css/ionicons.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/plugins/iCheck/all.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/css/select2.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/npm/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css'); ?>">
@@ -108,13 +111,18 @@
 
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery/dist/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-ui/jquery-ui.min.js'); ?>"></script>
-    <script src="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>
-    <script src="<?= base_url('assets/npm/admin-lte/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/moment/min/moment.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net/js/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/plugins/iCheck/icheck.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/npm/admin-lte/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/dist/js/adminlte.min.js'); ?>"></script>
     
     <script type="text/javascript">
