@@ -21,7 +21,7 @@ class Dropdown
                 if (is_object($item)) {
                     $result[$item->{$value}] = $item->{$label};
                 } else {
-                    $result[$item->{$value}] = $item[$label];
+                    $result[$item[$value]] = $item[$label];
                 }
             });
 

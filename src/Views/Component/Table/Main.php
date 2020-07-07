@@ -3,7 +3,13 @@
 <thead>
     <tr>
     <?php foreach ($data->columns as $name => $title) : ?>
-        <th><?= $title; ?></th>
+        <th>
+        <?php if (is_array($title)) : ?>
+        <?= $title['label'] ?: ''; ?>
+        <?php else : ?>
+        <?= $title; ?>
+        <?php endif; ?>
+        </th>
     <?php endforeach; ?>
     </tr>
 </thead>
@@ -31,7 +37,13 @@
 <tfoot>
     <tr>
     <?php foreach ($data->columns as $name => $title) : ?>
-        <th><?= $title; ?></th>
+        <th>
+        <?php if (is_array($title)) : ?>
+        <?= $title['label'] ?: ''; ?>
+        <?php else : ?>
+        <?= $title; ?>
+        <?php endif; ?>
+        </th>
     <?php endforeach; ?>
     </tr>
 </tfoot>

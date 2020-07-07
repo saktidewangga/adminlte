@@ -1,6 +1,6 @@
 $('#<?= $id; ?> thead tr').clone(true).appendTo('#<?= $id; ?> thead');
 $('#<?= $id; ?> thead tr:eq(0) th').each(function (i) {
-    var title = $(this).text();
+    var title = $(this).text().trim();
 
     if (title == '') {
     } else {

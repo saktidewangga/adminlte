@@ -4,9 +4,6 @@ use CI4Xpander_AdminLTE\View\Component\Form\Type;
 use DateTime;
 use Stringy\StaticStringy;
 
-/**
- * @property \CI4Xpander_AdminLTE\View\Component\Form\Data $data
- */
 class Form extends \CI4Xpander\View\Component
 {
     protected $_name = 'Form';
@@ -17,11 +14,19 @@ class Form extends \CI4Xpander\View\Component
     public $hidden = [];
     public $request;
     public $validator;
+    public $script;
 
     protected function _init()
     {
         helper('form');
         parent::_init();
+    }
+
+    public static function getInputID($name = '', $input = '')
+    {
+        return ucfirst($input['type']) . str_replace([
+            '[', ']'
+        ], '', ucfirst($name));
     }
 
     public function render()
@@ -40,7 +45,7 @@ class Form extends \CI4Xpander\View\Component
 
         foreach ($this->input as $name => $input) {
             if (is_array($input) && array_key_exists('type', $input)) {
-                $ID = ucfirst($input['type']) . str_replace('[]', '', ucfirst($name));
+                $ID = self::getInputID($name, $input);
 
                 $containerClass = [
                     'form-group'
@@ -159,7 +164,7 @@ class Form extends \CI4Xpander\View\Component
                     $column = isset($input['column']) ? $input['column'] : 1;
 
                     $columnCount = 1;
-                    foreach ($options as $code => $name) {
+                    foreach ($options as $code => $optionLabel) {
                         $columnClass = [];
                         if ($column > 1) {
                             $columnDiv = 12 / $column;
@@ -170,9 +175,9 @@ class Form extends \CI4Xpander\View\Component
                             }
                         }
 
-                        $view .= '<div class="checkbox' . implode(' ', $columnClass) . '"><label>' . form_checkbox($name . '[]', $code, false, array_merge([
+                        $view .= '<div class="checkbox ' . implode(' ', $columnClass) . '"><label>' . form_checkbox($name . '[]', $code, false, array_merge([
                             'id' => $ID . ucfirst($code)
-                        ], $disabled)) . $name . '</label></div>';
+                        ], $disabled)) . $optionLabel . '</label></div>';
 
                         if ($column > 1) {
                             if ($columnCount == $column) {
@@ -376,6 +381,10 @@ class Form extends \CI4Xpander\View\Component
         }
 
         $view .= form_close();
+
+        if (isset($this->script)) {
+            \Config\Services::viewScript()->add(view($this->script['file'], $this->script['data'] ?? []));
+        }
 
         return $view;
     }
