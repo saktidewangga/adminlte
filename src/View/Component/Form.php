@@ -303,8 +303,8 @@ class Form extends \CI4Xpander\View\Component
                 } elseif ($input['type'] == Type::BUTTON_GROUP) {
                     foreach ($input['buttons'] as $buttonName => $button) {
                         $buttonText = '';
-                        if (isset($button['text'])) {
-                            $buttonText = $button['text'];
+                        if (isset($button['label'])) {
+                            $buttonText = $button['label'];
                         } else {
                             $buttonText = StaticStringy::toTitleCase(str_replace('_', ' ', $buttonName));
                         }
