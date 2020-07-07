@@ -142,9 +142,16 @@ class Form extends \CI4Xpander\View\Component
                     $attributes = [];
                     $class = ['form-control'];
                     if ($input['type'] == Type::DROPDOWN_AUTOCOMPLETE) {
-                        \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\AutocompleteDropdown', [
-                            'id' => $ID,
-                            'options' => $options
+                        \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\AutocompleteDropdown', array_merge(
+                            [
+                                'id' => $ID,
+                                'options' => $options
+                            ],
+                            isset($input['ajax']) ? [
+                                'ajax' => $input['ajax']
+                            ] : []
+                        ), [
+                            'saveData' => false
                         ]));
                     }
 
@@ -255,10 +262,14 @@ class Form extends \CI4Xpander\View\Component
 
                     \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\\' . ($input['type'] == Type::DATE ? 'DatePicker' : 'DateRangePicker'), [
                         'id' => $ID,
+                    ], [
+                        'saveData' => false
                     ]));
                 } elseif ($input['type'] == Type::TIME) {
                     \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\TimePicker', [
                         'id' => $ID
+                    ], [
+                        'saveData' => false
                     ]));
 
                     $view .= '<div class="input-group">';
@@ -279,6 +290,8 @@ class Form extends \CI4Xpander\View\Component
                     if ($input['type'] == Type::WYSIWYG) {
                         \Config\Services::viewScript()->add(view('CI4Xpander_AdminLTE\Views\Script\WYSIWYG', [
                             'id' => $ID,
+                        ], [
+                            'saveData' => false
                         ]));
                     }
 
@@ -383,7 +396,9 @@ class Form extends \CI4Xpander\View\Component
         $view .= form_close();
 
         if (isset($this->script)) {
-            \Config\Services::viewScript()->add(view($this->script['file'], $this->script['data'] ?? []));
+            \Config\Services::viewScript()->add(view($this->script['file'], $this->script['data'] ?? [], [
+                'saveData' => false
+            ]));
         }
 
         return $view;

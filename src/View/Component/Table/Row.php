@@ -24,6 +24,8 @@ class Row extends \CI4Xpander\View\Component
         return view('CI4Xpander_AdminLTE\Views\Component\Table\Row', [
             'id' => $this->id,
             'columns' => $this->columns
+        ], [
+            'saveData' => false
         ]);
     }
 

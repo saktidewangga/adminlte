@@ -16,6 +16,8 @@ class Column extends \CI4Xpander\View\Component
     {
         return view('CI4Xpander_AdminLTE\Views\Component\Table\Row\Column', [
             'value' => $this->value
+        ], [
+            'saveData' => false
         ]);
     }
 

@@ -8,7 +8,16 @@ $('#<?= $id; ?>').select2({
                 page: params.page
             };
         },
-        delay: 500
+        delay: 500,
+        processResults: function(data) {
+            console.log(data);
+            return {
+                results: data.data,
+                pagination: {
+                    more: data.pagination.more
+                }
+            };
+        }
     },
     <?php if (isset($ajax['data']) && isset($options)) : ?>
     data: [
