@@ -89,10 +89,7 @@
         <div class="content-wrapper">
             <?php if (!empty($data->page->title) || !empty($data->page->description)) : ?>
                 <section class="content-header">
-                    <h1>
-                        <?= $data->page->title ?? ''; ?>
-                        <?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : ''; ?>
-                    </h1>
+                    <h1><?= $data->page->title ?? ''; ?><?= !empty($data->page->description) ? "<small>{$data->page->description}</small>" : ''; ?></h1>
                 </section>
             <?php endif; ?>
 

@@ -3,18 +3,27 @@ $('#<?= $id; ?>').select2({
     ajax: {
         url: '<?= $ajax['url']; ?>',
         data: function (params) {
-            return {
+            var query = {
                 search: params.term,
                 page: params.page
             };
+
+            <?php if (isset($ajax['chained'])) : ?>
+            <?php if (isset($ajax['chained']['query'])) : ?>
+            <?php foreach ($ajax['chained']['query'] as $query => $source) : ?>
+            query.<?= $query; ?> = $('#<?= $source ?>').val();
+            <?php endforeach; ?>
+            <?php endif; ?>
+            <?php endif; ?>
+
+            return query;
         },
         delay: 500,
         processResults: function(data) {
-            console.log(data);
             return {
                 results: data.data,
                 pagination: {
-                    more: data.pagination.more
+                    more: data.pagination.current_page < data.pagination.total_page
                 }
             };
         }
