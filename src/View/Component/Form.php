@@ -149,7 +149,12 @@ class Form extends \CI4Xpander\View\Component
                             ],
                             isset($input['ajax']) ? [
                                 'ajax' => $input['ajax']
-                            ] : []
+                            ] : [],
+                            isset($input['allowCreateNew']) ? (
+                                $input['allowCreateNew'] ? [
+                                    'isTags' => true
+                                ] : []
+                            ) : []
                         ), [
                             'saveData' => false
                         ]));
