@@ -47,9 +47,12 @@ class Form extends \CI4Xpander\View\Component
             if (is_array($input) && array_key_exists('type', $input)) {
                 $ID = self::getInputID($name, $input);
 
+                $containerAttr = $input['containerAttr'] ?? [];
+
                 $containerClass = [
                     'form-group'
                 ];
+
                 if (!is_null($this->validator)) {
                     if ($this->validator->hasError($name)) {
                         $containerClass[] = 'has-error';
@@ -60,8 +63,19 @@ class Form extends \CI4Xpander\View\Component
                     }
                 }
 
+                if (isset($input['containerClass'])) {
+                    $containerClass += array_merge($containerClass, $input['containerClass']);
+                }
+
                 $containerClass = implode(' ', $containerClass);
-                $view .= "<div id=\"{$ID}_container\" class=\"{$containerClass}\">";
+
+                $attr = [];
+                foreach ($containerAttr as $name => $value) {
+                    $attr[] = $name . '="' . $value . '"';
+                }
+                $attr = implode(' ', $attr);
+
+                $view .= "<div id=\"{$ID}_container\" class=\"{$containerClass}\" {$attr}>";
 
                 $label = '';
                 if (isset($input['label'])) {
@@ -154,6 +168,11 @@ class Form extends \CI4Xpander\View\Component
                                 $input['allowCreateNew'] ? [
                                     'isTags' => true
                                 ] : []
+                            ) : [],
+                            isset($input['multipleValue']) ? (
+                                $input['multipleValue'] ? [
+                                    'isMultiple' => true
+                                ] : []
                             ) : []
                         ), [
                             'saveData' => false
@@ -175,8 +194,9 @@ class Form extends \CI4Xpander\View\Component
 
                     $column = isset($input['column']) ? $input['column'] : 1;
 
-                    $columnCount = 1;
+                    $columnCount = 0;
                     foreach ($options as $code => $optionLabel) {
+                        $columnCount++;
                         $columnClass = [];
                         if ($column > 1) {
                             $columnDiv = 12 / $column;
@@ -196,12 +216,10 @@ class Form extends \CI4Xpander\View\Component
                                 $view .= '</div>';
                                 $columnCount = 0;
                             }
-
-                            $columnCount++;
                         }
                     }
 
-                    if ($columnCount < $column) {
+                    if ($columnCount > 0) {
                         for ($i = $columnCount; $i <= $column; $i++) {
                             $view .= '<div class="col-md-' . (12 / $column) . '"></div>';
                         }
