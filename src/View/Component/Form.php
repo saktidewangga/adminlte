@@ -70,8 +70,8 @@ class Form extends \CI4Xpander\View\Component
                 $containerClass = implode(' ', $containerClass);
 
                 $attr = [];
-                foreach ($containerAttr as $name => $value) {
-                    $attr[] = $name . '="' . $value . '"';
+                foreach ($containerAttr as $attrName => $attrValue) {
+                    $attr[] = $attrName . '="' . $attrValue . '"';
                 }
                 $attr = implode(' ', $attr);
 
