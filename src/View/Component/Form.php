@@ -179,14 +179,27 @@ class Form extends \CI4Xpander\View\Component
                         ]));
                     }
 
-                    $view .= form_dropdown($name, $options, $value, array_merge(
-                        $disabled,
-                        [
-                            'class' => implode(' ', $class),
-                            'id' => $ID
-                        ],
-                        $attributes
-                    ));
+                    $isMultiple = $input['multipleValue'] ?? false;
+
+                    if ($isMultiple) {
+                        $view .= form_multiselect($name, $options, $value, array_merge(
+                            $disabled,
+                            [
+                                'class' => implode(' ', $class),
+                                'id' => $ID
+                            ],
+                            $attributes
+                        ));
+                    } else {
+                        $view .= form_dropdown($name, $options, $value, array_merge(
+                            $disabled,
+                            [
+                                'class' => implode(' ', $class),
+                                'id' => $ID
+                            ],
+                            $attributes
+                        ));
+                    }
                 } elseif ($input['type'] == Type::CHECKBOX) {
                     $options = isset($input['options']) ? (
                         is_callable($input['options']) ? $input['options']() : $input['options']
