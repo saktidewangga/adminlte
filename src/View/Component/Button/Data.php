@@ -11,6 +11,7 @@ class Data extends \CI4Xpander_Dashboard\View\Data
     public $isBlock = false;
     public $isLink = false;
     public $url = '';
+    public $attributes = [];
 
     use \CI4Xpander\View\DataFactoryTrait;
 }

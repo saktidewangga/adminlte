@@ -111,7 +111,7 @@ class Form extends \CI4Xpander\View\Component
 
                 $valueName = 'value';
                 if (in_array($input['type'], [
-                    Type::SELECT, Type::DROPDOWN_AUTOCOMPLETE
+                    Type::SELECT, Type::DROPDOWN_AUTOCOMPLETE, Type::DROPDOWN
                 ])) {
                     $valueName = 'selected';
                 } elseif (in_array($input['type'], [
@@ -182,6 +182,12 @@ class Form extends \CI4Xpander\View\Component
                     $isMultiple = $input['multipleValue'] ?? false;
 
                     if ($isMultiple) {
+                        if (!is_array($value)) {
+                            $value = [
+                                $value
+                            ];
+                        }
+
                         $view .= form_multiselect($name, $options, $value, array_merge(
                             $disabled,
                             [

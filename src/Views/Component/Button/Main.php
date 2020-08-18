@@ -20,8 +20,15 @@ if ($data->isFlat) {
 if (!$data->isEnabled) {
     $class[] = 'disabled';
 }
+
+$attributes = [];
+if (!empty($data->attributes)) {
+    foreach ($data->attributes as $name => $value) {
+        $attributes[] = "{$name}=\"{$value}\"";
+    }
+}
 ?>
 
-<button type="<?= $data->type ?>" class="<?= implode(' ', $class); ?>">
+<button type="<?= $data->type ?>" class="<?= implode(' ', $class); ?>" <?= implode(' ', $attributes) ?>>
     <?= $data->text; ?>
 </button>

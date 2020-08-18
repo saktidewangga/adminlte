@@ -106,6 +106,30 @@
         </footer>
     </div>
 
+    <div class="modal fade" id="modalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Delete Data?</h4>
+                </div>
+                <!-- <div class="modal-body">
+                    <p>Delete data?</p>
+                </div> -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <form action="<?= "{$data->crud->baseUrl}/delete"; ?>" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="id" value="0">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery/dist/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-ui/jquery-ui.min.js'); ?>"></script>
     <script src="<?= base_url('assets/npm/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'); ?>"></script>

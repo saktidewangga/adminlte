@@ -24,5 +24,10 @@ class Data extends \CI4Xpander\View\Data
      */
     public $template;
 
+    /**
+     * @var \CI4Xpander_AdminLTE\View\Data\Crud $crud
+     */
+    public $crud;
+
     use \CI4Xpander\View\DataFactoryTrait;
 }
