@@ -438,9 +438,7 @@ class Form extends \CI4Xpander\View\Component
         $view .= form_close();
 
         if (isset($this->script)) {
-            \Config\Services::viewScript()->add(view($this->script['file'], $this->script['data'] ?? [], [
-                'saveData' => false
-            ]));
+            \Config\Services::viewScript()->add(view($this->script['file'], $this->script['data'] ?? []));
         }
 
         return $view;
