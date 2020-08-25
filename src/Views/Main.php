@@ -122,6 +122,7 @@
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
                     <form action="<?= "{$data->crud->baseUrl}/delete"; ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" name="_action" value="delete" />
                         <input type="hidden" name="id" value="0">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
