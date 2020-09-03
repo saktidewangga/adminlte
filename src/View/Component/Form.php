@@ -15,6 +15,7 @@ class Form extends \CI4Xpander\View\Component
     public $request;
     public $validator;
     public $script;
+    public $isMultipart = false;
 
     protected function _init()
     {
@@ -31,10 +32,17 @@ class Form extends \CI4Xpander\View\Component
 
     public function render()
     {
-        $view = form_open($this->action ?: uri_string(), [
-            'role' => 'form',
-            'autocomplete' => 'off'
-        ], $this->hidden);
+        if ($this->isMultipart) {
+            $view = form_open_multipart($this->action ?: uri_string(), [
+                'role' => 'form',
+                'autocomplete' => 'off'
+            ], $this->hidden);
+        } else {
+            $view = form_open($this->action ?: uri_string(), [
+                'role' => 'form',
+                'autocomplete' => 'off'
+            ], $this->hidden);
+        }
 
         if ($this->method == 'GET') {
             $method = 'Get';
@@ -85,7 +93,7 @@ class Form extends \CI4Xpander\View\Component
                 }
 
                 if (in_array($input['type'], [
-                    Type::TEXT, Type::EMAIL, Type::PASSWORD, Type::DROPDOWN_AUTOCOMPLETE, Type::CHECKBOX, Type::CHECKBOX_SINGLE, Type::RADIO, Type::DATE, Type::DATE_RANGE, Type::TEXT_AREA, Type::WYSIWYG, Type::SLIDER, Type::SLIDER_RANGE, Type::TIME
+                    Type::TEXT, Type::EMAIL, Type::PASSWORD, Type::DROPDOWN_AUTOCOMPLETE, Type::CHECKBOX, Type::CHECKBOX_SINGLE, Type::RADIO, Type::DATE, Type::DATE_RANGE, Type::TEXT_AREA, Type::WYSIWYG, Type::SLIDER, Type::SLIDER_RANGE, Type::TIME, Type::FILE
                 ])) {
                     $view .= form_label($label, $ID, [
                         'class' => 'control-label',
@@ -137,6 +145,16 @@ class Form extends \CI4Xpander\View\Component
                             'autocomplete' => 'off'
                         ]
                     ), $input['type']);
+            
+                } elseif ($input['type'] == Type::FILE) {
+                    $view .= form_upload($name, $value, array_merge(
+                        $disabled,
+                        [
+                            'class' => 'form-control',
+                            'id' => $ID,
+                            'autocomplete' => 'off'
+                        ]
+                    ));
                 } elseif ($input['type'] == Type::PASSWORD) {
                     $view .= form_input($name, $value, array_merge(
                         $disabled,

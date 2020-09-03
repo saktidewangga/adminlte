@@ -24,4 +24,5 @@ class Type
     const BUTTON_GROUP = 'groupOfButtons';
     const SLIDER = 'slider';
     const SLIDER_RANGE = 'rangedSlider';
+    const FILE = 'file';
 }
