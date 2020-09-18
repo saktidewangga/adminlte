@@ -19,6 +19,7 @@ class Type
     const WYSIWYG = 'wysiwyg';
     const HIDDEN = 'hidden';
     const SEPARATOR = 'separator';
+    const BUTTON = 'button';
     const BUTTON_SUBMIT = 'submitButton';
     const BUTTON_RESET = 'resetButton';
     const BUTTON_GROUP = 'groupOfButtons';
