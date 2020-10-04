@@ -137,6 +137,10 @@ class Form extends \CI4Xpander\View\Component
                 if (in_array($input['type'], [
                     Type::TEXT, Type::EMAIL
                 ])) {
+                    if (isset($input['button'])) {
+                        $view .= '<div class="input-group">';
+                    }
+
                     $view .= form_input($name, $value, array_merge(
                         $disabled,
                         [
@@ -145,7 +149,11 @@ class Form extends \CI4Xpander\View\Component
                             'autocomplete' => 'off'
                         ]
                     ), $input['type']);
-            
+
+                    if (isset($input['button'])) {
+                        $inputButtonClass = $input['button']['class'] ?? 'primary';
+                        $view .= '<span class="input-group-btn"><button type="button" class="btn btn-' . $inputButtonClass . '">' . $input['button']['label'] . '</button></span></div>';
+                    }
                 } elseif ($input['type'] == Type::FILE) {
                     $view .= form_upload($name, $value, array_merge(
                         $disabled,
@@ -366,6 +374,14 @@ class Form extends \CI4Xpander\View\Component
                     $view .= form_label('<u>' . $label . '</u>', '', [
                         'class' => 'control-label'
                     ]);
+                } elseif ($input['type'] == Type::BUTTON) {
+                    $view .= form_button($name, $label, array_merge(
+                        [
+                            'class' => 'btn btn-primary',
+                            'id' => $ID,
+                        ],
+                        $disabled
+                    ));
                 } elseif ($input['type'] == Type::BUTTON_SUBMIT) {
                     $view .= form_submit($name, $label, array_merge(
                         [
