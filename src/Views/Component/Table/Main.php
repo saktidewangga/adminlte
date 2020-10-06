@@ -5,7 +5,7 @@
     <?php foreach ($data->columns as $name => $title) : ?>
         <th>
         <?php if (is_array($title)) : ?>
-        <?= $title['label'] ?: ''; ?>
+        <?= $title['label'] ?? ''; ?>
         <?php else : ?>
         <?= $title; ?>
         <?php endif; ?>
@@ -39,7 +39,7 @@
     <?php foreach ($data->columns as $name => $title) : ?>
         <th>
         <?php if (is_array($title)) : ?>
-        <?= $title['label'] ?: ''; ?>
+        <?= $title['label'] ?? ''; ?>
         <?php else : ?>
         <?= $title; ?>
         <?php endif; ?>
