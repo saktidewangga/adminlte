@@ -20,6 +20,13 @@ $('#<?= $id; ?>').select2({
         },
         delay: 500,
         processResults: function(data) {
+            if (data.pagination.current_page == 1) {
+                data.data.unshift({
+                    id: 0,
+                    text: ""
+                });
+            }
+
             return {
                 results: data.data,
                 pagination: {
