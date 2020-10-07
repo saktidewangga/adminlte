@@ -62,7 +62,9 @@ class Form extends \CI4Xpander\View\Component
                 ];
 
                 if (!is_null($this->validator)) {
-                    if ($this->validator->hasError($name)) {
+                    if ($this->validator->hasError(str_replace([
+                        '[', ']'
+                    ], '', $name))) {
                         $containerClass[] = 'has-error';
                     }
 
@@ -109,11 +111,17 @@ class Form extends \CI4Xpander\View\Component
                 }
 
                 $getName = "get{$method}";
-                $submittedValue = $this->request->$getName($name);
+                $submittedValue = $this->request->$getName(str_replace([
+                    '[', ']'
+                ], '', $name));
 
                 if (!is_null($this->validator)) {
-                    if ($this->validator->hasError($name)) {
-                        $view .= "<span class=\"help-block\">{$this->validator->getError($name)}</span>";
+                    if ($this->validator->hasError(str_replace([
+                        '[', ']'
+                    ], '', $name))) {
+                        $view .= "<span class=\"help-block\">{$this->validator->getError(str_replace([
+                            '[', ']'
+                        ], '', $name))}</span>";
                     }
                 }
 
