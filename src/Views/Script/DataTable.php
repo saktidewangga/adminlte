@@ -31,6 +31,11 @@ var <?= $id; ?>Var = $('#<?= $id; ?>').DataTable({
             orderable: <?= is_array($column) ? (isset($column['orderable']) ? ($column['orderable'] ? 'true' : 'false') : 'true') : 'true' ?>
         }<?= $i < count($columns) ? ',' : ''; ?>
         <?php $i++; endforeach; ?>
+    ],
+    order: [
+        <?php $i = 1; foreach ($columns as $field => $column) : ?>
+        <?= is_array($column) ? (isset($column['orderable']) ? ($column['orderable'] ? (isset($column['order']) ? '[' . ($i - 1) . ', \'' . $column['order'] . '\'],' : '') : '') : (isset($column['order']) ? '[' . ($i - 1) . ', \'' . $column['order'] . '\'],' : '')) : '' ?>
+        <?php $i++; endforeach; ?>
     ]
 });
 <?php else : ?>
