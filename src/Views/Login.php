@@ -27,6 +27,9 @@
         <div class="login-logo">
             <a href="<?= base_url(); ?>"><?= $data->site->name; ?></a>
         </div>
+
+        <?= \Config\Services::message()->render(); ?>
+
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
