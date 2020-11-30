@@ -31,9 +31,23 @@ var <?= $id; ?>Var = $('#<?= $id; ?>').DataTable({
     sPaginationType: "full_numbers",
     orderMulti: true,
     processing: true,
-    serverSide: true,
+    serverSide: <?= $isServerSide ? 'true' : 'false'; ?>,
     <?php if ($isServerSide ?? false) : ?>
+    <?php if (!is_null($ajax)) : ?>
+    ajax: {
+        "url": "<?= $ajax['url'] ?? ''; ?>",
+        "dataSrc": "<?= $ajax['dataSrc'] ?? ''; ?>",
+    <?php if (isset($ajax['headers'])) : ?>
+        "headers": {
+    <?php foreach ($ajax['headers'] as $headerName => $headerValue) : ?>
+            "<?=$headerName?>": "<?=$headerValue?>",
+    <?php endforeach; ?>
+        },
+    <?php endif; ?>
+    },
+    <?php else : ?>
     ajax: window.location.href + "/data",
+    <?php endif; ?>
     <?php endif; ?>
     columns: <?= $id; ?>VarColumn,
     order: [
