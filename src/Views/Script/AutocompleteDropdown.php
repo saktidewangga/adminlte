@@ -1,4 +1,4 @@
-$('#<?= $id; ?>').select2({
+var propSelect2<?= $id; ?> = {
     <?php if (isset($ajax)) : ?>
     ajax: {
         url: '<?= $ajax['url']; ?>',
@@ -62,4 +62,10 @@ $('#<?= $id; ?>').select2({
     <?php endif; ?>
     tags: <?= isset($isTags) ? ($isTags ? 'true' : 'false') : 'false' ?>,
     multiple: <?= isset($isMultiple) ? ($isMultiple ? 'true' : 'false') : 'false' ?>,
-});
+};
+
+$('#<?= $id; ?>').select2(propSelect2<?= $id; ?>);
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('#<?= $id; ?>').select2(propSelect2<?= $id; ?>);
+})

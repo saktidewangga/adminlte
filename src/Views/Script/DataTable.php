@@ -16,7 +16,7 @@ $('#<?= $id; ?> thead tr:eq(1) th').each(function (i) {
     if (<?= $id; ?>VarColumn[i].searchable) {
         $(this).html('<input style="width:100%" type="text" placeholder="Search ' + title + '"/>');
 
-        $('input', this).on('keyup change', function () {
+        $('input', this).on('keyup change clear', function () {
             if (<?= $id; ?>Var.column(i).search() !== this.value) {
                 <?= $id; ?>Var.column(i).search(this.value).draw();
             }
