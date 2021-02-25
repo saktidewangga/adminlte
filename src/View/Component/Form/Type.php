@@ -26,4 +26,7 @@ class Type
     const SLIDER = 'slider';
     const SLIDER_RANGE = 'rangedSlider';
     const FILE = 'file';
+    const CUSTOM_BUILDER = 'customBuilder';
+    const DATATABLE_INPUT_TEXT = 'dataTableInputText';
+    const TABLE = 'table';
 }
