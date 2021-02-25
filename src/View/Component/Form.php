@@ -535,7 +535,7 @@ class Form extends \CI4Xpander\View\Component
                 // $this->relayed['data']['template']['script'][Type::DATATABLE_INPUT_TEXT][] = $ID;
                 // $this->relayed['data']['template']['script']['serialize-datatable-before-form-submit'][] = $ID;
             } elseif ($input['type'] == Type::CUSTOM_BUILDER) {
-                $view .= $input['value'];
+                $view .= is_callable($input['value']) ? $input['value']() : $input['value'];
             }
 
             if (isset($input['hint'])) {
